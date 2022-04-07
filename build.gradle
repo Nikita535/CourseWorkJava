@@ -1,0 +1,50 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.6'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '15'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	//	THYMELEAF
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+//	WEB
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+
+//	POSTGRES DRIVER
+	runtimeOnly 'org.postgresql:postgresql'
+
+//	FOR ENTITIES
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'org.hibernate:hibernate-core:5.6.7.Final'
+	implementation 'javax.validation:validation-api:2.0.1.Final'
+
+//	FOR UNIT TEST
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+//	FOR SECURITY
+//	implementation 'org.springframework.security:spring-security-core:5.6.2'
+//	implementation 'org.springframework.security:spring-security-web:5.6.2'
+//	implementation 'org.springframework.security:spring-security-config:5.6.2'
+
+//	MAIL
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

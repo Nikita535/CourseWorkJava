@@ -16,6 +16,7 @@ dependencies {
 	//	THYMELEAF
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
 //	WEB
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -29,16 +30,14 @@ dependencies {
 //	FOR ENTITIES
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	implementation 'org.hibernate:hibernate-core:5.6.7.Final'
-	implementation 'javax.validation:validation-api:2.0.1.Final'
+	implementation 'org.hibernate:hibernate-core'
+	implementation 'javax.validation:validation-api'
 
 //	FOR UNIT TEST
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 //	FOR SECURITY
-//	implementation 'org.springframework.security:spring-security-core:5.6.2'
-//	implementation 'org.springframework.security:spring-security-web:5.6.2'
-//	implementation 'org.springframework.security:spring-security-config:5.6.2'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 //	MAIL
 	implementation 'org.springframework.boot:spring-boot-starter-mail'

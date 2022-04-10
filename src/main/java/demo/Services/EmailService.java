@@ -22,7 +22,7 @@ public class EmailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(To);
         message.setText(text);
-        message.setSubject("Приветствие компании S7");
+        message.setSubject("Сообщение от комапании S7");
         mailSender.send(message);
     }
 }

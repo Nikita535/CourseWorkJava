@@ -28,8 +28,7 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Autowired
-    private EmailService emailService;
+
 
     @Override
     @Transactional
@@ -40,12 +39,6 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
 
-
-        if (!StringUtils.isEmpty(user.getEmail())){
-            String message = "Привет, "+user.getUsername()+"! Рады приветствовать вас на нашем сервисе. Удачных путешествий!";
-            emailService.sendSimpleMessage(user.getEmail(), message);
-        }
-
         return user;
     }
 
@@ -54,16 +47,18 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username);
     }
 
+
     @Transactional
-    public User findUserById(int userId){
-        Optional<User> userFromDb = userRepository.findById(userId);
-        return userFromDb.orElse(new User());
+    public void updateUser(User user){
+        userRepository.save(user);
     }
 
     @Transactional
-    public List<User> allUsers(){
-        return userRepository.findAll();
+    public void updateUserPassword(User user){
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
     }
+
 
     @Transactional
     public boolean saveUser(User user){
@@ -78,20 +73,7 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    @Transactional
-    public boolean deleteUser(int userId){
-        if (userRepository.findById(userId).isPresent()){
-            userRepository.deleteById(userId);
-            return true;
-        }
-        return false;
-    }
 
-    @Transactional
-    public List<User> usergtList(int idMin){
-        return em.createQuery("SELECT u from User u WHERE u.id > :paramId", User.class)
-                .setParameter("paramId", idMin).getResultList();
-    }
 
 }
 

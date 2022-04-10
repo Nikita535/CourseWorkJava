@@ -27,11 +27,6 @@ public class User implements UserDetails {
     private String email;
 
 
-
-
-
-
-
     public User() {
     }
 

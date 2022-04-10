@@ -30,9 +30,13 @@
         </div>
 
         <div th:if="${userAlreadyExists}">
-            <div class="alert alert-danger" th:text="${message}">
-            </div>
+            <div class="alert alert-danger" th:text="${message}"></div>
         </div>
+
+
+         <div th:if="${errorSetting}">
+                <div class="alert alert-danger" th:text="${message}"></div>
+         </div>
 
         <div th:if="${changeUsername}">
             <form th:method="POST" action="/UserProfile_username">
@@ -40,37 +44,60 @@
                        placeholder="Новый никнейм" required="true" autofocus="true"/>
                 <br>
                 <div class="col-xs-6 col-sm-6 col-md-6">
-                    <input type="submit" class="btn btn-danger btn-block" value="Изменить"/>
+                    <input type="submit" class="btn btn-success btn-block" value="Изменить"/>
                     <a href="UserProfile" class="btn btn-danger btn-block">Отмена</a>
                 </div>
             </form>
             <br>
         </div>
 
-        <div th:if="${changeUserPassword}">
+        <div th:if="${changePassword}">
             <form th:method="POST" action="/UserProfile_password">
-                <input type="password" th:name="user_password_input" id="new_password" class="form-control input-lg"
+<!--                 <input type="password" th:name="oldPassword" id="oldPassword" class="form-control input-lg"-->
+<!--                        placeholder="Введите старый пароль" required="true"/>-->
+                <input type="password" th:name="newPassword" id="newPassword" class="form-control input-lg"
                        placeholder="Новый пароль" required="true" autofocus="true"/>
                 <br>
+                <input type="password" th:name="newPasswordConfirm" id="newPasswordConfirm" class="form-control input-lg"
+                       placeholder="Повторите новый пароль" required="true"/>
+                <br>
                 <div class="col-xs-6 col-sm-6 col-md-6">
-                    <input type="submit" class="btn btn-danger btn-block" value="Изменить"/>
+                    <input type="submit" class="btn btn-success btn-block" value="Изменить"/>
                     <a href="UserProfile" class="btn btn-danger btn-block">Отмена</a>
                 </div>
             </form>
             <br>
         </div>
 
-        <div th:if="!${changeUsername}" class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary"><a style="text-decoration: none; color: white;" href="UserProfile_username">Сменить Никнейм</a></button>
-            <button type="button" class="btn btn-secondary"><a style="text-decoration: none; color: white;" href="lk-password">Сменить Пароль</a></button>
-            <button type="button" class="btn btn-secondary"><a style="text-decoration: none; color: white;" href="lk-email">Сменить Почту</a></button>
+
+
+
+                   <div th:if="${changeEmail}">
+                       <form th:method="POST" action="/UserProfile_email">
+                           <input type="text" th:name="newEmail" id="email" class="form-control input-lg"
+                                  placeholder="Новая почта" required="true" autofocus="true"/>
+                           <br>
+                           <div class="col-xs-6 col-sm-6 col-md-6">
+                               <input type="submit" class="btn btn-success btn-block" value="Изменить"/>
+                               <a href="UserProfile" class="btn btn-danger btn-block">Отмена</a>
+                           </div>
+                       </form>
+                       <br>
+                   </div>
+
+                <div th:if="!${changeUsername} and !${changePassword} and !${changeEmail}" class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary"><a style="text-decoration: none; color: white;" href="UserProfile_username">Сменить Никнейм</a></button>
+                    <button type="button" class="btn btn-secondary"><a style="text-decoration: none; color: white;" href="UserProfile_password">Сменить Пароль</a></button>
+                    <button type="button" class="btn btn-secondary"><a style="text-decoration: none; color: white;" href="UserProfile_email">Сменить Почту</a></button>
+                </div>
+
+
+            </div>
         </div>
-
-
     </div>
-</div>
-</div>
 </div>
 
 </body>
 </html>
+
+

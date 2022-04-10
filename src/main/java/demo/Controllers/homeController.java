@@ -20,12 +20,12 @@ public class homeController{
 
     @GetMapping("/login")
     public String getLogin() throws Exception {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-            return "redirect:/";
-        }
         return "login";
+    }
+
+    @GetMapping("/UserProfile")
+    public String getLK(){
+        return "UserProfile";
     }
 
     }

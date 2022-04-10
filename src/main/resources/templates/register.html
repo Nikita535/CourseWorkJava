@@ -28,24 +28,20 @@
                                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
 
-                                <div th:if="${errorLenUsername}">
-                                    <div class="alert alert-danger">
-                                        Имя пользователя должно быть более 5 символов
-                                    </div>
-                                </div>
+
                                 <div th:if="${errorLenPassword}">
                                     <div class="alert alert-danger">
-                                        Пароль должен быть более 5 символов
+                                        Слишком простой пароль! Вы хотите, чтобы вас взломал ребёнок?
                                     </div>
                                 </div>
                                 <div th:if="${errorConfPassword}">
                                     <div class="alert alert-danger">
-                                        Пароли не совпадают
+                                        Пароли не совпадают!
                                     </div>
                                 </div>
                                 <div th:if="${errorAlreadyExistsUsername}">
                                     <div class="alert alert-danger">
-                                        Пользователь с таким ником уже существует
+                                        Пользователь с таким ником уже существует!
                                     </div>
                                 </div>
                                 <div th:if="${errorAnomaly}">

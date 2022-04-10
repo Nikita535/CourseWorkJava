@@ -24,5 +24,6 @@ public class EmailService {
         message.setText(text);
         message.setSubject("Сообщение от комапании S7");
         mailSender.send(message);
+
     }
 }

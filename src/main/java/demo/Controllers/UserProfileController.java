@@ -4,6 +4,8 @@ package demo.Controllers;
 import demo.Entity.User;
 import demo.Services.EmailService;
 import demo.Services.UserService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@RequiredArgsConstructor
+@Slf4j
 public class UserProfileController {
 
     @Autowired
@@ -40,6 +44,7 @@ public class UserProfileController {
             model.addAttribute("userAlreadyExists", true);
             //Отображение ошибки
             model.addAttribute("message", "Пользователь с таким ником уже существует");
+            log.warn("failed update username cz this user is already exists");
             return "UserProfile";
         }
 
@@ -51,9 +56,10 @@ public class UserProfileController {
             //Отправка сообщения об изменении пользователю на почту
             String message = "Здравствуйте, ваш никнейм был изменён с "+SecurityContextHolder.getContext().getAuthentication().getName()+" на "+changed_user.getUsername()+"!";
             emailService.sendSimpleMessage(changed_user.getEmail(), message);
-        }
+        }else {log.error("email is NULL");}
         //Сохранение в базе с новым ником
         userService.updateUser(changed_user);
+        log.info("username changed on "+changed_user.getUsername());
         //Выходи из аккаунта
         return "redirect:/logout";
     }
@@ -79,12 +85,14 @@ public class UserProfileController {
         if (newPassword.length() < 5){
             model.addAttribute("errorSetting", true);
             model.addAttribute("message", "Слишком простой пароль");
+            log.warn("error pass length");
             return "UserProfile";
         }
         //Проверка пароля на соответсвтие
         if (!newPassword.equals(newPasswordConfirm)){
             model.addAttribute("errorSetting", true);
             model.addAttribute("message", "Пароли не совпадают");
+            log.warn("error pass confirm");
             return "UserProfile";
         }
         //Установка нового пароля
@@ -95,9 +103,10 @@ public class UserProfileController {
             //Отправка сообщения об изменении пользователю на почту
             String message = "Здравствуйте, " + current_user.getUsername()+". Ваш пароль был изменён. Убедитесь, что это сделали вы!";
             emailService.sendSimpleMessage(current_user.getEmail(), message);
-        }
+        }else {log.error("email is NULL");}
 
         userService.updateUserPassword(current_user);
+        log.info("pass update");
         return "redirect:/logout";
     }
 
@@ -117,10 +126,11 @@ public class UserProfileController {
             //Отправка сообщения об изменении пользователю на почту
             String message = "Здравствуйте, ваша почта была изменена на " +newEmail;
             emailService.sendSimpleMessage(current_user.getEmail(), message);
-        }
+        }else {log.error("email is NULL");}
 
         current_user.setEmail(newEmail);
         userService.updateUser(current_user);
+        log.info("email changed");
         return "redirect:/logout";
     }
 

@@ -3,6 +3,8 @@ package demo.Services;
 
 import demo.Entity.User;
 import demo.Repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,16 +12,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
-
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 
+@RequiredArgsConstructor
+@Slf4j
 @Service
 public class UserService implements UserDetailsService {
     @PersistenceContext
@@ -36,6 +34,7 @@ public class UserService implements UserDetailsService {
         User user = userRepository.findByUsername(username);
 
         if (user == null){
+            log.error("error login");
             throw new UsernameNotFoundException("User not found");
         }
 

@@ -53,8 +53,9 @@
 
         <div th:if="${changePassword}">
             <form th:method="POST" action="/UserProfile_password">
-<!--                 <input type="password" th:name="oldPassword" id="oldPassword" class="form-control input-lg"-->
-<!--                        placeholder="Введите старый пароль" required="true"/>-->
+                 <input type="password" th:name="oldPassword" id="oldPassword" class="form-control input-lg"
+                        placeholder="Введите старый пароль" required="true"/>
+                <br>
                 <input type="password" th:name="newPassword" id="newPassword" class="form-control input-lg"
                        placeholder="Новый пароль" required="true" autofocus="true"/>
                 <br>

@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserProfileController {
 
     @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
     private UserService userService;
     @Autowired
     private EmailService emailService;
@@ -75,12 +77,21 @@ public class UserProfileController {
     @PostMapping("/UserProfile_password")
     public String changePassword(@ModelAttribute("newPassword") String newPassword,
                                     @ModelAttribute("newPasswordConfirm") String newPasswordConfirm,
-//                           @ModelAttribute("oldPassword") String oldPassword
+                           @ModelAttribute("oldPassword") String oldPassword,
                                 Model model){
         //Берём текущего аунтифицированного пользователя, тк искать по паролю не можем
         User current_user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        String userOldPassword = bCryptPasswordEncoder.hashCode(current_user.getPassword());
-//        System.out.println(userOldPassword);
+
+
+//        String oldPasswordEncode = bCryptPasswordEncoder.matches(oldPassword)
+
+        if (!bCryptPasswordEncoder.matches(oldPassword,current_user.getPassword())){
+            model.addAttribute("errorSetting", true);
+            model.addAttribute("message", "Неправильный старый пароль");
+            log.warn("Старый пароль не свопал");
+            return "UserProfile";
+        }
+
         //Проверка пароля для сложность
         if (newPassword.length() < 5){
             model.addAttribute("errorSetting", true);

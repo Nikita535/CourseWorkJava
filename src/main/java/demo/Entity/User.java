@@ -2,6 +2,7 @@ package demo.Entity;
 
 
 import demo.Services.EmailService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,9 +10,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity
+@Entity(name = "user")
 @Table(name = "users")
+@Data
 public class User implements UserDetails {
 
     @Id
@@ -26,6 +30,9 @@ public class User implements UserDetails {
     private String passwordConfirm;
     private String email;
 
+
+    @OneToMany(mappedBy = "userID", fetch = FetchType.EAGER, orphanRemoval = true)
+    private Set<Ticket> list = new HashSet<Ticket>();
 
     public User() {
     }
@@ -101,6 +108,33 @@ public class User implements UserDetails {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+    public int getTicketCount(int ticketNumber){
+        for (Ticket item : list){
+            if (item.getTicketNumber() == ticketNumber){
+                return item.getTicketCount();
+            }
+        }
+        return 0;
+    }
+
+    public Ticket getTicket(int ticketNumber){
+        for (Ticket item: list){
+            if (item.getTicketNumber() == ticketNumber)
+                return item;
+        }
+        return null;
+    }
+
+//    public String getAllTotalCost(){
+//        int total = 0;
+//        for (Ticket item: this.list){
+//            String temp = item.getPrice(true).replaceAll("\\D+","");
+//            total += Integer.parseInt(temp);
+//        }
+//        return String.valueOf(total) + " руб.";
+//    }
 
     @Override
     public String toString() {

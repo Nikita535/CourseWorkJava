@@ -1,5 +1,6 @@
 html {
 	font-size: 16px;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -138,7 +139,7 @@ a:hover {
 
 .product-links a {
 	font-size: 20px;
-	margin-left: 10px;
+	margin-left: 0px;
 }
 /* Product card */
 

@@ -157,47 +157,47 @@
 
 
 					<li class="nav-item" sec:authorize="isAuthenticated()">
-						<a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modal-cart">
+						<a class="nav-link" href="shopBasket" >
 							<i class="fas fa-shopping-cart"></i>
 						</a>
-						<div class="modal fade" id="modal-cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-xl">
-								<div class="modal-content">
-									<div class="modal-header bg-secondary text-white">
-										<h5 class="modal-title" id="exampleModalLabel">Корзина</h5>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-									</div>
-									<div class="modal-body">
-										<table class="table">
-											<tbody>
-												<tr>
-													<td><img src="img/products/1.jpeg" alt=""></td>
-													<td><a href="#">Apple Cinema 30"</a></td>
-													<td>$230.99</td>
-													<td>1</td>
-												</tr>
-												<tr>
-													<td><img src="img/products/2.jpeg" alt=""></td>
-													<td><a href="#">Canon EOS 5D</a></td>
-													<td>$230.99</td>
-													<td>1</td>
-												</tr>
-												<tr>
-													<td><img src="img/products/3.jpeg" alt=""></td>
-													<td><a href="#">HP</a></td>
-													<td>$230.99</td>
-													<td>1</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save changes</button>
-									</div>
-								</div>
-							</div>
-						</div>
+<!--						<div class="modal fade" id="modal-cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--							<div class="modal-dialog modal-xl">-->
+<!--								<div class="modal-content">-->
+<!--									<div class="modal-header bg-secondary text-white">-->
+<!--										<h5 class="modal-title" id="exampleModalLabel">Корзина</h5>-->
+<!--										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--									</div>-->
+<!--									<div class="modal-body">-->
+<!--										<table class="table">-->
+<!--											<tbody>-->
+<!--												<tr>-->
+<!--													<td><img src="img/products/1.jpeg" alt=""></td>-->
+<!--													<td><a href="#">Apple Cinema 30"</a></td>-->
+<!--													<td>$230.99</td>-->
+<!--													<td>1</td>-->
+<!--												</tr>-->
+<!--												<tr>-->
+<!--													<td><img src="img/products/2.jpeg" alt=""></td>-->
+<!--													<td><a href="#">Canon EOS 5D</a></td>-->
+<!--													<td>$230.99</td>-->
+<!--													<td>1</td>-->
+<!--												</tr>-->
+<!--												<tr>-->
+<!--													<td><img src="img/products/3.jpeg" alt=""></td>-->
+<!--													<td><a href="#">HP</a></td>-->
+<!--													<td>$230.99</td>-->
+<!--													<td>1</td>-->
+<!--												</tr>-->
+<!--											</tbody>-->
+<!--										</table>-->
+<!--									</div>-->
+<!--									<div class="modal-footer">-->
+<!--										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--										<button type="button" class="btn btn-primary">Save changes</button>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
 					</li>
 
 					<li class="nav-item" sec:authorize="isAuthenticated()">
@@ -246,8 +246,8 @@
 							<a href="#"><img src="img/products/2.jpeg" alt=""></a>
 						</div>
 						<div class="product-details">
-							<h4><a href="#">Москва -> Ереван</a></h4>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
+							<h4><a href="#">Ереван</a></h4>
+							<p>Ереван – столица Армении с величественной архитектурой советского периода.</p>
 <!--							<div class="form-row" >-->
 <!--								<div class="product-links"  sec:authorize="isAuthenticated()">-->
 <!--									<a href="remove_ticket_1"><i class="fas fa-caret-left fa-lg"></i></a>-->
@@ -267,7 +267,7 @@
 										<a href="add_ticket_1"><i class="fas fa-caret-right fa-lg" ></i></a>
 									</div>
 								</div>
-								<div class="col-4"><button type="button" class="btn btn-success" disabled>10.000 руб.</button></div>
+								<div class="col-4"><button  type="button" class="btn btn-success" disabled>10.000 руб.</button></div>
 							</div>
 						</div>
 					</div>
@@ -280,7 +280,7 @@
 						</div>
 						<div class="product-details">
 							<h4><a href="#">Москва -> Сочи</a></h4>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
+							<p>Сочи – это российский город на Черном море, популярный пляжный курорт.</p>
 							<div class="row">
 								<div class="col-8">
 									<div class="product-links"  sec:authorize="!isAuthenticated()">
@@ -305,7 +305,7 @@
 						</div>
 						<div class="product-details">
 							<h4><a href="#">Москва -> Ташкент</a></h4>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
+							<p>Ташкент – столица Узбекистана, которая славится многочисленными музеями.</p>
 							<div class="row">
 								<div class="col-8">
 									<div class="product-links"  sec:authorize="!isAuthenticated()">
@@ -330,7 +330,7 @@
 						</div>
 						<div class="product-details">
 							<h4><a href="#">Москва -> Стамбул</a></h4>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
+							<p>Стамбул – крупнейший город Турции на берегах пролива Босфор.</p>
 							<div class="row">
 								<div class="col-8">
 									<div class="product-links"  sec:authorize="!isAuthenticated()">
@@ -355,7 +355,7 @@
 						</div>
 						<div class="product-details">
 							<h4><a href="#">Москва -> Каир</a></h4>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
+							<p>Каир – многолюдная столица Египта на реке Нил. Сердце города – площадь Тахрир.</p>
 							<div class="row">
 								<div class="col-8">
 									<div class="product-links"  sec:authorize="!isAuthenticated()">
@@ -380,7 +380,7 @@
 						</div>
 						<div class="product-details">
 							<h4><a href="#">Москва -> Тунис</a></h4>
-							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
+							<p>Тунис – страна в Северной Африке, естественными границами которой является Средиземное море</p>
 							<div class="row">
 								<div class="col-8">
 									<div class="product-links"  sec:authorize="!isAuthenticated()">

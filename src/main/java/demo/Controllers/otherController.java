@@ -20,7 +20,7 @@ public class otherController {
 
     @GetMapping("/UserProfile")
     public String getLK(){
-        return "UserProfile";
+        return "userProfile";
     }
 
     }

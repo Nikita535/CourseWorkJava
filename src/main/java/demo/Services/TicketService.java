@@ -4,6 +4,7 @@ import demo.Entity.Ticket;
 import demo.Entity.User;
 import demo.Repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,7 +27,7 @@ public class TicketService {
     public void changeCountTickets(User user, int ticketNumber, boolean plus){
         if (user.getTicketCount(ticketNumber) == 0){
             if (!plus) return;
-            Ticket ticket = new Ticket(user, ticketNumber);
+            Ticket ticket = new Ticket(user,ticketNumber);
             addTicket(ticket,user);
         }   else {
             Ticket ticket = user.getTicket(ticketNumber);
@@ -79,5 +80,6 @@ public class TicketService {
             ticket.setTicketCount(ticket.getTicketCount() - 1);
         ticketRepository.save(ticket);
     }
+
 
 }

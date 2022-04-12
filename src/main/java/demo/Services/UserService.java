@@ -1,11 +1,13 @@
 package demo.Services;
 
 
+import demo.Entity.Ticket;
 import demo.Entity.User;
 import demo.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Set;
 
 
 @RequiredArgsConstructor
@@ -26,6 +29,8 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    EmailService emailService;
 
 
     @Override
@@ -71,6 +76,25 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
         return true;
     }
+
+
+    @Transactional
+    public void sendOrder(User user, Set<Ticket> tickets,String totalPrice){
+        StringBuilder message= new StringBuilder("Спасибо за ваш заказ!\n");
+
+        for(Ticket ticket: tickets){
+            message.append(ticket.getName()).append(" | ")
+                    .append(ticket.getPriceForOneTicket())
+                    .append(" | ")
+                    .append(ticket.getTicketCount())
+                    .append(" билетов | ")
+                    .append(ticket.getPriceForManyTicket());
+        }
+        message.append("\nОбщая сумма заказа: ").append(totalPrice);
+
+        emailService.sendSimpleMessage(user.getEmail(), message.toString());
+    }
+
 
 
 

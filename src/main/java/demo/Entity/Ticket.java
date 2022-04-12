@@ -17,6 +17,7 @@ public class Ticket {
     private int ticketNumber;
     private int ticketCount=1;
 
+
     public int getTicketCount() {
         return ticketCount;
     }
@@ -28,6 +29,7 @@ public class Ticket {
     public Ticket(User userID, int ticketNumber) {
         this.userID = userID;
         this.ticketNumber = ticketNumber;
+
     }
 
     public Ticket() {}
@@ -45,64 +47,48 @@ public class Ticket {
     }
 
     public String getPhotoAddress(){
-        return String.valueOf(ticketNumber) + ".jpg";
+        return "img/products/"+String.valueOf(ticketNumber) + ".jpeg";
     }
 
-//    public String getPrice(boolean totalCost){
-//        switch (this.ticketNumber){
-//            case 1:
-//                if (totalCost)
-//                    return String.valueOf(1500 * ticketCount) + " руб.";
-//                else
-//                    return String.valueOf(1500) + " руб.";
-//            case 2:
-//                if (totalCost)
-//                    return String.valueOf(1800 * ticketCount) + " руб.";
-//                else
-//                    return String.valueOf(1800) + " руб.";
-//            case 3:
-//                if (totalCost)
-//                    return String.valueOf(2300 * ticketCount) + " руб.";
-//                else
-//                    return String.valueOf(2300) + " руб.";
-//            case 4:
-//                if (totalCost)
-//                    return String.valueOf(5000 * ticketCount) + " руб.";
-//                else
-//                    return String.valueOf(5000) + " руб.";
-//            case 5:
-//                if (totalCost)
-//                    return String.valueOf(3100 * ticketCount) + " руб.";
-//                else
-//                    return String.valueOf(3100) + " руб.";
-//            case 6:
-//                if (totalCost)
-//                    return String.valueOf(2800 * ticketCount) + " руб.";
-//                else
-//                    return String.valueOf(2800) + " руб.";
-//            default:
-//                return "Неизвестно";
-//        }
-//    }
-//
-//    public String getName(){
-//        switch (this.ticketNumber){
-//            case 1:
-//                return "Букет Микс";
-//            case 2:
-//                return "Букет Комплимент";
-//            case 3:
-//                return "Букет Свадебный";
-//            case 4:
-//                return "Букет Джентельмен";
-//            case 5:
-//                return "Букет Вьюга";
-//            case 6:
-//                return "Букет Джунгли";
-//            default:
-//                return "Неизвестный букет";
-//        }
-//    }
+
+
+
+    public String getPriceForManyTicket() {
+        return switch (this.ticketNumber) {
+            case 1 -> String.valueOf(10000*ticketCount) + " руб.";
+            case 2 -> String.valueOf(12000*ticketCount) + " руб.";
+            case 3 -> String.valueOf(13000*ticketCount) + " руб.";
+            case 4 -> String.valueOf(14000*ticketCount) + " руб.";
+            case 5 -> String.valueOf(15000*ticketCount) + " руб.";
+            case 6 -> String.valueOf(16000*ticketCount) + " руб.";
+            default -> "";
+        };
+    }
+
+
+    public String getPriceForOneTicket(){
+        return switch (this.ticketNumber) {
+            case 1 -> String.valueOf(10000) + " руб.";
+            case 2 -> String.valueOf(12000) + " руб.";
+            case 3 -> String.valueOf(13000) + " руб.";
+            case 4 -> String.valueOf(14000) + " руб.";
+            case 5 -> String.valueOf(15000) + " руб.";
+            case 6 -> String.valueOf(16000) + " руб.";
+            default -> "";
+        };
+    }
+
+    public String getName(){
+        return switch (this.ticketNumber) {
+            case 1 -> "Билет в Ереван";
+            case 2 -> "Билет в Сочи";
+            case 3 -> "Билет в Ташкент";
+            case 4 -> "Билет в Стамбул";
+            case 5 -> "Билет в Каир";
+            case 6 -> "Билет в Тунис";
+            default -> "";
+        };
+    }
 
     @Override
     public String toString() {

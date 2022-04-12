@@ -127,14 +127,15 @@ public class User implements UserDetails {
         return null;
     }
 
-//    public String getAllTotalCost(){
-//        int total = 0;
-//        for (Ticket item: this.list){
-//            String temp = item.getPrice(true).replaceAll("\\D+","");
-//            total += Integer.parseInt(temp);
-//        }
-//        return String.valueOf(total) + " руб.";
-//    }
+    public String getTotalCost(){
+        int total = 0;
+        for (Ticket item: this.list){
+            String temp = item.getPriceForManyTicket().replace(" руб.","");
+            System.out.println(temp);
+            total += Integer.parseInt(temp);
+        }
+        return String.valueOf(total) + " руб.";
+    }
 
     @Override
     public String toString() {

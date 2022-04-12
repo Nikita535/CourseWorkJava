@@ -25,7 +25,7 @@ public class shopController {
     @GetMapping("/add_ticket_{number}")
     public String addB(@PathVariable int number){
         User current_user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        makeChanges(current_user, number, true);
+        makeChanges(current_user, number,true);
         if (number <= 3) return "redirect:/index";
         else return "redirect:/index#shop";
     }

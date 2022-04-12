@@ -33,7 +33,7 @@ public class userProfileController {
     public String changeUsername(Model model){
         //Визуально отображаем поле для ввода
         model.addAttribute("changeUsername", true);
-        return "UserProfile";
+        return "userProfile";
     }
     @PostMapping("/UserProfile_username")
     public String changeUsername(@ModelAttribute("username_input") String username, Model model){
@@ -47,7 +47,7 @@ public class userProfileController {
             //Отображение ошибки
             model.addAttribute("message", "Пользователь с таким ником уже существует");
             log.warn("failed update username cz this user is already exists");
-            return "UserProfile";
+            return "userProfile";
         }
 
         //Создание нового объекта user из базы
@@ -72,7 +72,7 @@ public class userProfileController {
     public String changePassword(Model model){
         //Визуально отображаем поле для ввода
         model.addAttribute("changePassword", true);
-        return "UserProfile";
+        return "userProfile";
     }
     @PostMapping("/UserProfile_password")
     public String changePassword(@ModelAttribute("newPassword") String newPassword,
@@ -89,7 +89,7 @@ public class userProfileController {
             model.addAttribute("errorSetting", true);
             model.addAttribute("message", "Неправильный старый пароль");
             log.warn("Старый пароль не свопал");
-            return "UserProfile";
+            return "userProfile";
         }
 
         //Проверка пароля для сложность
@@ -97,14 +97,14 @@ public class userProfileController {
             model.addAttribute("errorSetting", true);
             model.addAttribute("message", "Слишком простой пароль");
             log.warn("error pass length");
-            return "UserProfile";
+            return "userProfile";
         }
         //Проверка пароля на соответсвтие
         if (!newPassword.equals(newPasswordConfirm)){
             model.addAttribute("errorSetting", true);
             model.addAttribute("message", "Пароли не совпадают");
             log.warn("error pass confirm");
-            return "UserProfile";
+            return "userProfile";
         }
         //Установка нового пароля
         current_user.setPassword(newPassword);
@@ -126,7 +126,7 @@ public class userProfileController {
     @GetMapping("/UserProfile_email")
     public String changeEmail(Model model){
         model.addAttribute("changeEmail", true);
-        return "UserProfile";
+        return "userProfile";
     }
 
     @PostMapping("/UserProfile_email")

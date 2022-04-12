@@ -283,6 +283,9 @@
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
 							<div class="row">
 								<div class="col-8">
+									<div class="product-links"  sec:authorize="!isAuthenticated()">
+										<button type="button" disabled class="btn btn-success" th:text="Авторизуйтесь"></button>
+									</div>
 									<div class="product-links"  sec:authorize="isAuthenticated()">
 										<a href="remove_ticket_2"><i class="fas fa-caret-left fa-lg"></i></a>
 										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(2)}"></button>
@@ -305,6 +308,9 @@
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
 							<div class="row">
 								<div class="col-8">
+									<div class="product-links"  sec:authorize="!isAuthenticated()">
+										<button type="button" disabled class="btn btn-success" th:text="Авторизуйтесь"></button>
+									</div>
 									<div class="product-links"  sec:authorize="isAuthenticated()">
 										<a href="remove_ticket_3"><i class="fas fa-caret-left fa-lg"></i></a>
 										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(3)}"></button>
@@ -327,6 +333,9 @@
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
 							<div class="row">
 								<div class="col-8">
+									<div class="product-links"  sec:authorize="!isAuthenticated()">
+										<button type="button" disabled class="btn btn-success" th:text="Авторизуйтесь"></button>
+									</div>
 									<div class="product-links"  sec:authorize="isAuthenticated()">
 										<a href="remove_ticket_4"><i class="fas fa-caret-left fa-lg"></i></a>
 										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(4)}"></button>
@@ -349,6 +358,9 @@
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
 							<div class="row">
 								<div class="col-8">
+									<div class="product-links"  sec:authorize="!isAuthenticated()">
+										<button type="button" disabled class="btn btn-success" th:text="Авторизуйтесь"></button>
+									</div>
 									<div class="product-links"  sec:authorize="isAuthenticated()">
 										<a href="remove_ticket_5"><i class="fas fa-caret-left fa-lg"></i></a>
 										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(5)}"></button>
@@ -371,6 +383,9 @@
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
 							<div class="row">
 								<div class="col-8">
+									<div class="product-links"  sec:authorize="!isAuthenticated()">
+										<button type="button" disabled class="btn btn-success" th:text="Авторизуйтесь"></button>
+									</div>
 									<div class="product-links"  sec:authorize="isAuthenticated()">
 										<a href="remove_ticket_6"><i class="fas fa-caret-left fa-lg"></i></a>
 										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(6)}"></button>

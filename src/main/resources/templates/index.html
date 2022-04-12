@@ -248,12 +248,26 @@
 						<div class="product-details">
 							<h4><a href="#">Москва -> Ереван</a></h4>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
-							<div class="form-row text-center">
-								<div class="product-links"  sec:authorize="isAuthenticated()">
-									<a href="remove_ticket_1"><i class="fas fa-caret-left fa-lg"></i></a>
-									<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(1)}"></button>
-									<a href="add_ticket_1"><i class="fas fa-caret-right fa-lg" ></i></a>
+<!--							<div class="form-row" >-->
+<!--								<div class="product-links"  sec:authorize="isAuthenticated()">-->
+<!--									<a href="remove_ticket_1"><i class="fas fa-caret-left fa-lg"></i></a>-->
+<!--									<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(1)}"></button>-->
+<!--									<a href="add_ticket_1"><i class="fas fa-caret-right fa-lg" ></i></a>-->
+<!--								</div>-->
+<!--								<button type="button" class="btn btn-success" disabled>10.000 руб.</button>-->
+<!--							</div>-->
+							<div class="row">
+								<div class="col-8">
+									<div class="product-links"  sec:authorize="!isAuthenticated()">
+										<button type="button" disabled class="btn btn-success" th:text="Авторизуйтесь"></button>
+									</div>
+									<div class="product-links"  sec:authorize="isAuthenticated()">
+										<a href="remove_ticket_1"><i class="fas fa-caret-left fa-lg"></i></a>
+										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(1)}"></button>
+										<a href="add_ticket_1"><i class="fas fa-caret-right fa-lg" ></i></a>
+									</div>
 								</div>
+								<div class="col-4"><button type="button" class="btn btn-success" disabled>10.000 руб.</button></div>
 							</div>
 						</div>
 					</div>
@@ -267,12 +281,15 @@
 						<div class="product-details">
 							<h4><a href="#">Москва -> Сочи</a></h4>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
-							<div class="form-row text-center">
-								<div class="product-links"  sec:authorize="isAuthenticated()">
-									<a href="remove_ticket_2"><i class="fas fa-caret-left fa-lg"></i></a>
-									<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(2)}"></button>
-									<a href="add_ticket_2"><i class="fas fa-caret-right fa-lg" ></i></a>
+							<div class="row">
+								<div class="col-8">
+									<div class="product-links"  sec:authorize="isAuthenticated()">
+										<a href="remove_ticket_2"><i class="fas fa-caret-left fa-lg"></i></a>
+										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(2)}"></button>
+										<a href="add_ticket_2"><i class="fas fa-caret-right fa-lg" ></i></a>
+									</div>
 								</div>
+								<div class="col-4"><button type="button" class="btn btn-success" disabled>12.000 руб.</button></div>
 							</div>
 						</div>
 					</div>
@@ -286,12 +303,15 @@
 						<div class="product-details">
 							<h4><a href="#">Москва -> Ташкент</a></h4>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
-							<div class="form-row text-center">
-								<div class="product-links"  sec:authorize="isAuthenticated()">
-									<a href="remove_ticket_3"><i class="fas fa-caret-left fa-lg"></i></a>
-									<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(3)}"></button>
-									<a href="add_ticket_3"><i class="fas fa-caret-right fa-lg" ></i></a>
+							<div class="row">
+								<div class="col-8">
+									<div class="product-links"  sec:authorize="isAuthenticated()">
+										<a href="remove_ticket_3"><i class="fas fa-caret-left fa-lg"></i></a>
+										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(3)}"></button>
+										<a href="add_ticket_3"><i class="fas fa-caret-right fa-lg" ></i></a>
+									</div>
 								</div>
+								<div class="col-4"><button type="button" class="btn btn-success" disabled>13.000 руб.</button></div>
 							</div>
 						</div>
 					</div>
@@ -305,12 +325,15 @@
 						<div class="product-details">
 							<h4><a href="#">Москва -> Стамбул</a></h4>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
-							<div class="form-row text-center">
-								<div class="product-links"  sec:authorize="isAuthenticated()">
-									<a href="remove_ticket_4"><i class="fas fa-caret-left fa-lg"></i></a>
-									<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(4)}"></button>
-									<a href="add_ticket_4"><i class="fas fa-caret-right fa-lg" ></i></a>
+							<div class="row">
+								<div class="col-8">
+									<div class="product-links"  sec:authorize="isAuthenticated()">
+										<a href="remove_ticket_4"><i class="fas fa-caret-left fa-lg"></i></a>
+										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(4)}"></button>
+										<a href="add_ticket_4"><i class="fas fa-caret-right fa-lg" ></i></a>
+									</div>
 								</div>
+								<div class="col-4"><button type="button" class="btn btn-success" disabled>14.000 руб.</button></div>
 							</div>
 						</div>
 					</div>
@@ -324,12 +347,15 @@
 						<div class="product-details">
 							<h4><a href="#">Москва -> Каир</a></h4>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
-							<div class="form-row text-center">
-								<div class="product-links"  sec:authorize="isAuthenticated()">
-									<a href="remove_ticket_5"><i class="fas fa-caret-left fa-lg"></i></a>
-									<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(5)}"></button>
-									<a href="add_ticket_5"><i class="fas fa-caret-right fa-lg" ></i></a>
+							<div class="row">
+								<div class="col-8">
+									<div class="product-links"  sec:authorize="isAuthenticated()">
+										<a href="remove_ticket_5"><i class="fas fa-caret-left fa-lg"></i></a>
+										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(5)}"></button>
+										<a href="add_ticket_5"><i class="fas fa-caret-right fa-lg" ></i></a>
+									</div>
 								</div>
+								<div class="col-4"><button type="button" class="btn btn-success" disabled>15.000 руб.</button></div>
 							</div>
 						</div>
 					</div>
@@ -343,12 +369,15 @@
 						<div class="product-details">
 							<h4><a href="#">Москва -> Тунис</a></h4>
 							<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium, repudiandae?</p>
-							<div class="form-row text-center">
-								<div class="product-links"  sec:authorize="isAuthenticated()">
-									<a href="remove_ticket_6"><i class="fas fa-caret-left fa-lg"></i></a>
-									<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(6)}"></button>
-									<a href="add_ticket_6"><i class="fas fa-caret-right fa-lg" ></i></a>
+							<div class="row">
+								<div class="col-8">
+									<div class="product-links"  sec:authorize="isAuthenticated()">
+										<a href="remove_ticket_6"><i class="fas fa-caret-left fa-lg"></i></a>
+										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(6)}"></button>
+										<a href="add_ticket_6"><i class="fas fa-caret-right fa-lg" ></i></a>
+									</div>
 								</div>
+								<div class="col-4"><button type="button" class="btn btn-success" disabled>16.000 руб.</button></div>
 							</div>
 						</div>
 					</div>

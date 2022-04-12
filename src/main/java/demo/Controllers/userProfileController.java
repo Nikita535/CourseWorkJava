@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class UserProfileController {
+public class userProfileController {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;

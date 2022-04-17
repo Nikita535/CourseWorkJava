@@ -68,8 +68,13 @@ public class TicketService {
     }
 
     @Transactional
-    public void deleteCarts(Set<Ticket> ticketSet){
+    public void deleteTickets(Set<Ticket> ticketSet){
         ticketRepository.deleteAll(ticketSet);
+    }
+
+    @Transactional
+    public List<Ticket> GetTickets(Set<Ticket> ticketSet){
+        return ticketRepository.findAll();
     }
 
     @Transactional

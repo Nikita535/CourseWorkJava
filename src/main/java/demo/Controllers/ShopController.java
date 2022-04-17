@@ -14,23 +14,22 @@ public class ShopController {
     @Autowired
     private TicketService ticketService;
 
-
-    private void makeChanges(User user,int ticketNumber,boolean plus){
-        ticketService.changeCountTickets(user,ticketNumber,plus);
+    public User getLoginUser(){
+       return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
     @GetMapping("/add_ticket_{number}")
     public String addB(@PathVariable int number){
-        User current_user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        makeChanges(current_user, number,true);
+        User current_user = getLoginUser();
+        ticketService.changeCountTickets(current_user,number,true);
         if (number <= 3) return "redirect:/index";
         else return "redirect:/index#shop";
     }
 
     @GetMapping("/remove_ticket_{number}")
     public String remB(@PathVariable int number){
-        User current_user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        makeChanges(current_user, number, false);
+        User current_user = getLoginUser();
+        ticketService.changeCountTickets(current_user,number,false);
         if (number <= 3) return "redirect:/index";
         else return "redirect:/index#shop";
     }

@@ -31,18 +31,21 @@ public class User implements UserDetails {
     private String email;
 
 
+
     @OneToMany(mappedBy = "userID", fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<Ticket> list = new HashSet<Ticket>();
 
     public User() {
     }
 
-    public User(String username, String password, String passwordConfirm, String email) {
+    public User(String username, String password, String passwordConfirm, String email,String role) {
         this.username = username;
         this.password = password;
         this.passwordConfirm = passwordConfirm;
         this.email = email;
     }
+
+
 
     public int getId() {
         return id;

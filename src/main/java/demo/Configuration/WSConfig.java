@@ -32,7 +32,10 @@ public class WSConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/register", "/", "/index")
                 .permitAll()
-                .anyRequest().authenticated()
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/admin").hasRole("ADMIN")
+//                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -43,6 +46,18 @@ public class WSConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .logoutSuccessUrl("/");
     }
+
+
+
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser("ADMIN")
+//                .password("ADMIN")
+//                .roles("ADMIN");
+//    }
+
+
 
     @Override
     public void configure(WebSecurity web) throws Exception {

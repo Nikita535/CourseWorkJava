@@ -28,6 +28,8 @@ public class UserProfileController {
     @Autowired
     private EmailService emailService;
 
+
+
     //Смена ника
     @GetMapping("/UserProfile_username")
     public String changeUsername(Model model){

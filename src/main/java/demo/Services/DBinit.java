@@ -1,0 +1,36 @@
+package demo.Services;
+
+import demo.Entity.User;
+import demo.Repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+public class DBinit implements CommandLineRunner {
+
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private UserService userService;
+
+    public DBinit(UserRepository userRepository,BCryptPasswordEncoder bCryptPasswordEncoder,UserService userService) {
+        this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.userService = userService;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        String password = bCryptPasswordEncoder.encode("ADMIN");
+        User admin = new User("ADMIN",password,password,"nzhigulevskiy@bk.ru","ADMIN");
+        if (userRepository.findByUsername("ADMIN")!=null){
+            System.out.println("");
+        }else {
+            userRepository.save(admin);
+        }
+    }
+}

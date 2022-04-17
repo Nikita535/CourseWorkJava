@@ -22,16 +22,14 @@ public class ShopController {
     public String addB(@PathVariable int number){
         User current_user = getLoginUser();
         ticketService.changeCountTickets(current_user,number,true);
-        if (number <= 3) return "redirect:/index";
-        else return "redirect:/index#shop";
+        return "redirect:/index#{number}";
     }
 
     @GetMapping("/remove_ticket_{number}")
     public String remB(@PathVariable int number){
         User current_user = getLoginUser();
         ticketService.changeCountTickets(current_user,number,false);
-        if (number <= 3) return "redirect:/index";
-        else return "redirect:/index#shop";
+        return "redirect:/index#{number}";
     }
 
 

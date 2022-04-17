@@ -5,13 +5,14 @@ import demo.Services.EmailService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
+import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.enabled;
 
 @Entity(name = "user")
 @Table(name = "users")
@@ -21,14 +22,12 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
-
-    @Size(min=2, message = "Не меньше 5 знаков")
     private String username;
-    @Size(min=2, message = "Не меньше 5 знаков")
     private String password;
     @Transient
     private String passwordConfirm;
     private String email;
+    private String role="";
 
 
 
@@ -38,14 +37,34 @@ public class User implements UserDetails {
     public User() {
     }
 
+    public User(String username, String password, String passwordConfirm, String email) {
+        this.username = username;
+        this.password = password;
+        this.passwordConfirm = passwordConfirm;
+        this.email = email;
+        this.role = "USER";
+    }
+
     public User(String username, String password, String passwordConfirm, String email,String role) {
         this.username = username;
         this.password = password;
         this.passwordConfirm = passwordConfirm;
         this.email = email;
+        this.role = role;
     }
 
-
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        final List<SimpleGrantedAuthority> authorities = new LinkedList<>();
+//        if (enabled) {
+//            if (this.getUser().isAdmin()) {
+//                authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+//            }
+//            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+//        }
+//        return authorities;
+        return null;
+    }
 
     public int getId() {
         return id;
@@ -83,10 +102,6 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
 
     public String getPassword() {
         return password;

@@ -19,7 +19,7 @@ public class TicketService {
     private UserService userService;
 
     @Transactional
-    public List<Ticket> findCartByUserID(User user){
+    public List<Ticket> findAllByUserID(User user){
         return ticketRepository.findAllByUserID(user);
     }
 
@@ -31,12 +31,14 @@ public class TicketService {
             addTicket(ticket,user);
         }   else {
             Ticket ticket = user.getTicket(ticketNumber);
+            //Чтобы не хранить 0 в бд
             if (user.getTicketCount(ticketNumber) == 1 & !plus){
                 deleteTicketfromUser(ticket,user);
             }
             else
                 changeCountOfTicket(ticket, plus);
         }
+
     }
 
 
@@ -48,7 +50,6 @@ public class TicketService {
     @Transactional
     public void deleteTicketfromUser(Ticket ticket,User user){
         user.getList().remove(ticket);
-        userService.updateUser(user);
         deleteTicket(ticket);
     }
 
@@ -70,11 +71,6 @@ public class TicketService {
     @Transactional
     public void deleteTickets(Set<Ticket> ticketSet){
         ticketRepository.deleteAll(ticketSet);
-    }
-
-    @Transactional
-    public List<Ticket> GetTickets(Set<Ticket> ticketSet){
-        return ticketRepository.findAll();
     }
 
     @Transactional

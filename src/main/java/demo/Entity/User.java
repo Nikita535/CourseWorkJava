@@ -1,6 +1,7 @@
 package demo.Entity;
 
 
+import demo.Enums.Role;
 import demo.Services.EmailService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,12 @@ public class User implements UserDetails {
     @Transient
     private String passwordConfirm;
     private String email;
-    private String role="";
+
+    @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles = new HashSet<>();
+
 
 
 
@@ -42,30 +48,33 @@ public class User implements UserDetails {
         this.password = password;
         this.passwordConfirm = passwordConfirm;
         this.email = email;
-        this.role = "USER";
     }
 
-    public User(String username, String password, String passwordConfirm, String email,String role) {
-        this.username = username;
-        this.password = password;
-        this.passwordConfirm = passwordConfirm;
-        this.email = email;
-        this.role = role;
-    }
+//    public User(String username, String password, String passwordConfirm, String email,String role) {
+//        this.username = username;
+//        this.password = password;
+//        this.passwordConfirm = passwordConfirm;
+//        this.email = email;
+//        this.role = role;
+//    }
+
+
+//    public static UserDetails fromUser(User user){
+//        return new org.springframework.security.core.userdetails.User(
+//                user.getEmail(), user.getPassword()
+//                ,user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(),user.isEnabled(),
+//                user.getRole().getAuthorities());
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        final List<SimpleGrantedAuthority> authorities = new LinkedList<>();
-//        if (enabled) {
-//            if (this.getUser().isAdmin()) {
-//                authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-//            }
-//            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-//        }
-//        return authorities;
-        return null;
+        return roles;
     }
 
+    public boolean isAdmin()
+    {
+        return roles.contains(Role.ROLE_ADMIN);
+    }
     public int getId() {
         return id;
     }

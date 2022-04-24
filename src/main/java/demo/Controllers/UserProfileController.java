@@ -62,7 +62,7 @@ public class UserProfileController {
             emailService.sendSimpleMessage(changed_user.getEmail(), message);
         }else {log.error("email is NULL");}
         //Сохранение в базе с новым ником
-        userService.updateUser(changed_user);
+        userService.saveUser(changed_user);
         log.info("username changed on "+changed_user.getUsername());
         //Выходи из аккаунта
         return "redirect:/logout";
@@ -142,7 +142,7 @@ public class UserProfileController {
         }else {log.error("email is NULL");}
 
         current_user.setEmail(newEmail);
-        userService.updateUser(current_user);
+        userService.saveUser(current_user);
         log.info("email changed");
         return "redirect:/logout";
     }

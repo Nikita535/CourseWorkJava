@@ -36,38 +36,8 @@ public class RegisterController {
 
     @PostMapping("/register")
     public String registerSave(@ModelAttribute("user") @Valid User user,
-                               Model model){
-
-
-        if (!Objects.equals(user.getPassword(), user.getPasswordConfirm())){
-            model.addAttribute("errorConfPassword", true);
-            log.warn("error confirm pass");
-            return "register";
-        }
-        if (user.getPassword().length() < 5){
-            model.addAttribute("errorLenPassword", true);
-            log.warn("error pass length");
-            return "register";
-        }
-        if (userService.findUserByUsername(user.getUsername()) != null){
-            model.addAttribute("errorAlreadyExistsUsername", true);
-            log.warn("error user already exists");
-            return "register";
-        }
-        try{
-            userService.saveUser(user);
-            log.info("user add");
-            if (!StringUtils.isEmpty(user.getEmail())){
-                String message = "Здравствуйте, "+user.getUsername()+"! Рады приветствовать вас на нашем сервисе. Удачных путешествий!";
-                emailService.sendSimpleMessage(user.getEmail(), message);
-            }else {log.error("email is NULL");}
-            return "redirect:/login";
-        } catch (Exception e){
-            log.error(e.getClass().toString());
-            model.addAttribute("errorAnomaly", true);
-            return "register";
-        }
+                               Model model) {
+        return userService.validateRegister(user, model);
     }
-
 }
 

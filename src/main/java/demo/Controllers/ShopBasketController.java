@@ -44,14 +44,14 @@ public class ShopBasketController {
 
 
     @GetMapping("/clear")
-    public String ClearBasket(){
+    public String ClearBasket(Model model){
         try {
             //получаем текущего юзера
             User current_user = getLoginUser();
             //очищаем список покупок текущего юзера в бд
             ticketService.deleteTickets(current_user.getList());
 //            System.out.println(ticketService.GetTickets(current_user.getList()));
-            //Очистка у текущего пользователя
+            //Очистка у текущего пользователя (для быстрого визуального отображения)
             current_user.getList().clear();
         }catch (Exception e){
             log.error("clear failed");

@@ -3,6 +3,7 @@ package demo.Services;
 
 import demo.Entity.Ticket;
 import demo.Entity.User;
+import demo.Enums.Role;
 import demo.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +15,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -52,10 +57,6 @@ public class UserService implements UserDetailsService {
     }
 
 
-    @Transactional
-    public void updateUser(User user){
-        userRepository.save(user);
-    }
 
     @Transactional
     public void updateUserPassword(User user){
@@ -73,11 +74,43 @@ public class UserService implements UserDetailsService {
         }
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setRole("USER");
+        user.getRoles().add(Role.ROLE_USER);
         userRepository.save(user);
         return true;
     }
 
+
+    @Transactional
+    public String validateRegister(User user, Model model){
+
+        if (!Objects.equals(user.getPassword(), user.getPasswordConfirm())){
+            model.addAttribute("errorConfPassword", true);
+            log.warn("error confirm pass");
+            return "register";
+        }
+        if (user.getPassword().length() < 5){
+            model.addAttribute("errorLenPassword", true);
+            log.warn("error pass length");
+            return "register";
+        }
+        if (findUserByUsername(user.getUsername()) != null){
+            model.addAttribute("errorAlreadyExistsUsername", true);
+            log.warn("error user already exists");
+            return "register";
+        }
+        try{
+            saveUser(user);
+            log.info("user add");
+            if (!StringUtils.isEmpty(user.getEmail())){
+                String message = "Здравствуйте, "+user.getUsername()+"! Рады приветствовать вас на нашем сервисе. Удачных путешествий!";
+                emailService.sendSimpleMessage(user.getEmail(), message);
+            }else {log.error("email is NULL");}
+            return "redirect:/login";
+        } catch (Exception e){
+            log.error(e.getClass().toString());
+            return "register";
+        }
+    }
 
     @Transactional
     public void sendOrder(User user, Set<Ticket> tickets,String totalPrice){

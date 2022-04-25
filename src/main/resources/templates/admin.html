@@ -14,6 +14,9 @@
     <title>Hello, world!</title>
 </head>
 <body>
+<div th:if="${errorBan}">
+    <div class="alert alert-danger" th:text="${message}"></div>
+</div>
 <table class="table table-hover">
     <tr>
         <th>Никнейм</th>
@@ -31,10 +34,11 @@
             <p th:case="false">Пользователь забанен</p>
         </td>
         <td th:switch="${user.checkRole()}">
-<!--            <p th:case="'ROLE_ADMIN'">Администратор</p>-->
-<!--            <p th:case="ROLE_USER'">Пользователь</p>-->
-            <p th:case="*">Пользователь</p>
+            <p th:case="true">Администратор</p>
+            <p th:case="false">Пользователь</p>
         </td>
+        <td th:if="${user.getActive()==true}" class="align-middle"><a role="button" class="btn btn-secondary" th:href="@{'/ban_'+${user.getUsername()}}">Забанить</a></td>
+        <td th:if="${user.getActive()==false}" class="align-middle"><a role="button" class="btn btn-secondary" th:href="@{'/unban_'+${user.getUsername()}}">Разбанить</a></td>
     </tr>
 </table>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

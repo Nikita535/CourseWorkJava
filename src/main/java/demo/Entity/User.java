@@ -56,8 +56,8 @@ public class User implements UserDetails {
         this.active = active;
     }
 
-    public String checkRole(){
-        return getRoles().toArray()[0].toString();
+    public Boolean checkRole(){
+        return getRoles().contains(Role.ROLE_ADMIN);
     }
 
 //    public User(String username, String password, String passwordConfirm, String email,String role) {

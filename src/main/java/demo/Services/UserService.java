@@ -20,6 +20,7 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -75,8 +76,13 @@ public class UserService implements UserDetailsService {
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.getRoles().add(Role.ROLE_USER);
+        user.setActive(true);
         userRepository.save(user);
         return true;
+    }
+
+    public List<User> showAllUser() {
+        return userRepository.findUserBy();
     }
 
 

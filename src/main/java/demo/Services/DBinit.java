@@ -29,8 +29,10 @@ public class DBinit implements CommandLineRunner {
         String password = bCryptPasswordEncoder.encode("ADMIN");
         User admin = new User("ADMIN",password,password,"nzhigulevskiy@bk.ru");
         admin.getRoles().add(Role.ROLE_ADMIN);
+        admin.setActive(true);
         if (userRepository.findByUsername("ADMIN")==null) {
             userRepository.save(admin);
         }
+        System.out.println(admin.getRoles().toArray()[0].toString().getClass());
     }
 }

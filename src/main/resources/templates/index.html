@@ -62,6 +62,7 @@
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="/UserProfile">Личный кабинет</a></li>
+							<li th:if="${#authentication.getPrincipal().isAdmin()}"><a class="dropdown-item" href="/admin">Панель администратора</a></li>
 							<li><a class="dropdown-item" href="/logout">Выйти</a></li>
 						</ul>
 					</li>

@@ -27,15 +27,13 @@ public class User implements UserDetails {
     private String password;
     @Transient
     private String passwordConfirm;
+    private Boolean active;
     private String email;
 
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles = new HashSet<>();
-
-
-
 
     @OneToMany(mappedBy = "userID", fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<Ticket> list = new HashSet<Ticket>();
@@ -48,6 +46,18 @@ public class User implements UserDetails {
         this.password = password;
         this.passwordConfirm = passwordConfirm;
         this.email = email;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public String checkRole(){
+        return getRoles().toArray()[0].toString();
     }
 
 //    public User(String username, String password, String passwordConfirm, String email,String role) {
@@ -116,6 +126,7 @@ public class User implements UserDetails {
         return password;
     }
 
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -164,12 +175,4 @@ public class User implements UserDetails {
         return String.valueOf(total) + " руб.";
     }
 
-    @Override
-    public String toString() {
-        return "\nUser{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }

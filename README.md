@@ -13,20 +13,13 @@ When registering, the user must confirm his personal email specified during regi
 
 ---
 
-Programming languages used when writing a project.
----------------------------
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Nikita535)](https://github.com/Nikita535/CourseWorkJava)
-
-The main programming language, as you can see, is python. We chose this particular language because it is the most suitable for writing bots for Telegram.
-
-
 I used the following dependences:
 * ___Thymeleaf___ - Thymeleaf is a modern server-side Java template engine for both web and standalone environments.
 * ___Spring WEB___ - web framework based on the Servlet API and part of the Spring framework. Initially, it was only an MVC framework, but at the moment it supports the whole variety of web.
 * ___Spring Security___ - powerful and highly customizable authentication and access-control framework. It is the de-facto standard for securing Spring-based applications.
 * ___Postgress___ - open source object-relational database system.
 * ___Lombock___ - Java library tool that generates code for minimizing boilerplate code.
-*  ___Hibernate___ - Hibernate is a library for the Java programming language designed to solve object-relational mapping (ORM) tasks, the most popular implementation of the JPA specification.\
+*  ___Hibernate___ - Hibernate is a library for the Java programming language designed to solve object-relational mapping (ORM) tasks, the most popular implementation of the JPA specification.
 
 
 ---------------

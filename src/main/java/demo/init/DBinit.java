@@ -1,8 +1,9 @@
-package demo.Services;
+package demo.init;
 
 import demo.Entity.User;
 import demo.Enums.Role;
 import demo.Repository.UserRepository;
+import demo.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

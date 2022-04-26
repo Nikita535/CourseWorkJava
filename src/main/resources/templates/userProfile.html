@@ -16,7 +16,67 @@
 <body>
 
 
+<nav  class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">S7 Airlines</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Catalog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">News</a>
+                </li>
+            </ul>
 
+
+
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown"  sec:authorize="!isAuthenticated()">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="far fa-user"></i></a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <div class="text-center">
+                                <a href="/login" class="btn btn-default btn-rounded mb-4">Войти</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="text-center">
+                                <a href="/register" class="btn btn-default btn-rounded mb-4">Зарегистрироваться</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="true" sec:authentication="name">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li th:if="${#authentication.getPrincipal().getActive()}"><a class="dropdown-item" href="/UserProfile">Личный кабинет</a></li>
+                        <li th:if="${#authentication.getPrincipal().isAdmin()}"><a class="dropdown-item" href="/admin">Панель администратора</a></li>
+                        <li><a class="dropdown-item" href="/logout">Выйти</a></li>
+                    </ul>
+                </li>
+
+                <a role="button" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActive()==false}" class="btn btn-danger">Вы забанены(</a>
+
+                <li class="nav-item" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActive()==true}">
+                    <a class="nav-link" href="shopBasket" >
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">

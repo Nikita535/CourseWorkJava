@@ -67,9 +67,10 @@
 						</ul>
 					</li>
 
-					<a role="button" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActive()==false}" class="btn btn-danger">Вы забанены(</a>
+					<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive() and #authentication.getPrincipal().getActivationCode==null}" class="btn btn-danger">Вы заблокированы</a>
+					<a role="button" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActivationCode()!=null}" class="btn btn-danger">Подтвердите почту</a>
 
-					<li class="nav-item" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActive()==true}">
+					<li class="nav-item" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActive()}">
 						<a class="nav-link" href="shopBasket" >
 							<i class="fas fa-shopping-cart"></i>
 						</a>
@@ -137,7 +138,7 @@
 										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(1)}"></button>
 										<a href="add_ticket_1"><i class="fas fa-caret-right fa-lg" ></i></a>
 									</div>
-									<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive()}" class="btn btn-danger">Вы забанены(</a>
+									<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive()}" class="btn btn-danger">Вы заблокированы</a>
 								</div>
 								<div class="col-4"><button  type="button" class="btn btn-success sm" disabled>10.000</button></div>
 							</div>
@@ -163,7 +164,8 @@
 										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(2)}"></button>
 										<a href="add_ticket_2"><i class="fas fa-caret-right fa-lg" ></i></a>
 									</div>
-									<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive()}" class="btn btn-danger">Вы забанены(</a>
+									<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive() and #authentication.getPrincipal().getActivationCode==null}" class="btn btn-danger">Вы заблокированы</a>
+									<a role="button" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActivationCode()!=null}" class="btn btn-danger">Подтвердите почту</a>
 								</div>
 								<div class="col-4"><button type="button" class="btn btn-success" disabled>12.000</button></div>
 							</div>
@@ -189,7 +191,8 @@
 										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(3)}"></button>
 										<a href="add_ticket_3"><i class="fas fa-caret-right fa-lg" ></i></a>
 									</div>
-									<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive()}" class="btn btn-danger">Вы забанены(</a>
+									<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive() and #authentication.getPrincipal().getActivationCode==null}" class="btn btn-danger">Вы заблокированы</a>
+									<a role="button" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActivationCode()!=null}" class="btn btn-danger">Подтвердите почту</a>
 								</div>
 								<div class="col-4"><button type="button" class="btn btn-success" disabled>13.000</button></div>
 							</div>
@@ -215,7 +218,8 @@
 										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(4)}"></button>
 										<a href="add_ticket_4"><i class="fas fa-caret-right fa-lg" ></i></a>
 									</div>
-									<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive()}" class="btn btn-danger">Вы забанены(</a>
+									<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive() and #authentication.getPrincipal().getActivationCode==null}" class="btn btn-danger">Вы заблокированы</a>
+									<a role="button" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActivationCode()!=null}" class="btn btn-danger">Подтвердите почту</a>
 								</div>
 								<div class="col-4"><button type="button" class="btn btn-success" disabled>14.000</button></div>
 							</div>
@@ -241,7 +245,8 @@
 										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(5)}"></button>
 										<a href="add_ticket_5"><i class="fas fa-caret-right fa-lg" ></i></a>
 									</div>
-									<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive()}" class="btn btn-danger">Вы забанены(</a>
+									<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive() and #authentication.getPrincipal().getActivationCode==null}" class="btn btn-danger">Вы заблокированы</a>
+									<a role="button" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActivationCode()!=null}" class="btn btn-danger">Подтвердите почту</a>
 								</div>
 								<div class="col-4"><button type="button" class="btn btn-success" disabled>15.000</button></div>
 							</div>
@@ -267,7 +272,8 @@
 										<button type="button" disabled class="btn btn-success" th:text="${#authentication.getPrincipal().getTicketCount(6)}"></button>
 										<a href="add_ticket_6"><i class="fas fa-caret-right fa-lg" ></i></a>
 									</div>
-									<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive()}" class="btn btn-danger">Вы забанены(</a>
+									<a role="button" sec:authorize="isAuthenticated()" th:if="${!#authentication.getPrincipal().getActive() and #authentication.getPrincipal().getActivationCode==null}" class="btn btn-danger">Вы заблокированы</a>
+									<a role="button" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActivationCode()!=null}" class="btn btn-danger">Подтвердите почту</a>
 								</div>
 								<div class="col-4"><button type="button" class="btn btn-success" disabled>16.000</button></div>
 							</div>

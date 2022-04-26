@@ -8,7 +8,6 @@ import demo.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,9 +19,7 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 @RequiredArgsConstructor
@@ -65,6 +62,11 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    @Transactional
+    public User findUserByActivationCode(String code){
+        return userRepository.findUserByActivationCode(code);
+    }
+
 
     @Transactional
     public boolean saveUser(User user){
@@ -75,9 +77,22 @@ public class UserService implements UserDetailsService {
         }
 
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.getRoles().add(Role.ROLE_USER);
-        user.setActive(true);
+        user.setRoles(Collections.singleton(Role.ROLE_USER));
+        user.setActive(false);
+        user.setActivationCode(UUID.randomUUID().toString());
         userRepository.save(user);
+
+        if (!StringUtils.isEmpty(user.getEmail())) {
+            String message = String.format(
+                    "Hello, %s! \n" + "Welcome to Sweater. Please, visit next link: http://localhost:8080/activate/%s",
+                    user.getUsername(),
+                    user.getActivationCode()
+            );
+
+            emailService.sendSimpleMessage(user.getEmail(), message);
+        }
+
+
         return true;
     }
 
@@ -107,10 +122,6 @@ public class UserService implements UserDetailsService {
         try{
             saveUser(user);
             log.info("user add");
-            if (!StringUtils.isEmpty(user.getEmail())){
-                String message = "Здравствуйте, "+user.getUsername()+"! Рады приветствовать вас на нашем сервисе. Удачных путешествий!";
-                emailService.sendSimpleMessage(user.getEmail(), message);
-            }else {log.error("email is NULL");}
             return "redirect:/login";
         } catch (Exception e){
             log.error(e.getClass().toString());
@@ -136,8 +147,15 @@ public class UserService implements UserDetailsService {
     }
 
 
-
-
+    public void activateUser(String code) {
+        User user = userRepository.findUserByActivationCode(code);
+         if (user == null){
+             return;
+         }
+         user.setActive(true);
+         user.setActivationCode(null);
+         userRepository.save(user);
+    }
 }
 
 

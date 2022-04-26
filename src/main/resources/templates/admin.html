@@ -99,7 +99,7 @@
         <td class="align-middle" th:text="${user.getPassword()}"></td>
         <td th:switch="${user.getActive()}">
             <p th:case="true">Пользователь активен</p>
-            <p th:case="false">Пользователь забанен</p>
+            <p th:case="false">Пользователь не активен</p>
         </td>
         <td th:switch="${user.checkRole()}">
             <p th:case="true">Администратор</p>

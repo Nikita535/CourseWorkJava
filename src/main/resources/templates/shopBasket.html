@@ -67,7 +67,7 @@
                     </ul>
                 </li>
 
-                <a role="button" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActive()==false}" class="btn btn-danger">Вы забанены(</a>
+                <a role="button" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActive()==false}" class="btn btn-danger">Вы заблокированы</a>
 
                 <li class="nav-item" sec:authorize="isAuthenticated()" th:if="${#authentication.getPrincipal().getActive()==true}">
                     <a class="nav-link" href="shopBasket" >

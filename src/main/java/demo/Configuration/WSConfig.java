@@ -32,7 +32,7 @@ public class WSConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/register", "/", "/index")
+                .antMatchers("/register", "/", "/index","/activate/*")
                 .permitAll()
                 .and()
                 .formLogin()

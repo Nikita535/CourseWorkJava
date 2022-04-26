@@ -29,6 +29,7 @@ public class User implements UserDetails {
     private String passwordConfirm;
     private Boolean active;
     private String email;
+    private String activationCode;
 
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
@@ -46,6 +47,14 @@ public class User implements UserDetails {
         this.password = password;
         this.passwordConfirm = passwordConfirm;
         this.email = email;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
     }
 
     public Boolean getActive() {

@@ -38,10 +38,6 @@ public class AdminController {
         if(!user.getRoles().contains(Role.ROLE_ADMIN)) {
             user.setActive(false);
             userService.saveUser(user);
-        }else {
-            model.addAttribute("errorBan", true);
-            model.addAttribute("message", "Нельзя забанить администратора");
-            return "redirect:/admin";
         }
         return "redirect:/admin";
     }

@@ -64,7 +64,7 @@ public class UserProfileController {
         //Сохранение в базе с новым ником
         userService.saveUser(changed_user);
         log.info("username changed on "+changed_user.getUsername());
-        //Выходи из аккаунта
+        //Выходим из аккаунта
         return "redirect:/logout";
     }
 

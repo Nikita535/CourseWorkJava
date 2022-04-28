@@ -31,7 +31,7 @@ so far only available on the local machine
 
 
 
-*****The bot is in the public domain and users can implement their ideas in it, thereby improving our creation!*****
+*****The service is in the public domain and users can implement their ideas in it, thereby improving our creation!*****
 
 Developer accounts:
 * ___Nikita535___

@@ -35,6 +35,8 @@ dependencies {
 
 //	test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '5.6.3'
+	implementation 'junit:junit:4.13.1'
 
 //	security
 	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -45,6 +47,8 @@ dependencies {
 //	logback
 	testImplementation 'ch.qos.logback:logback-classic:1.2.11'
 	implementation 'org.slf4j:slf4j-api:1.7.36'
+
+
 }
 
 tasks.named('test') {
